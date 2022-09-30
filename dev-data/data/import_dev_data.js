@@ -15,7 +15,7 @@ const _reviews = JSON.parse( reviews)
 n = _tours.length
 
 
-const DB = "mongodb+srv://Biswajit:ROYPHdBK5uzLdjK8@cluster0.pfwif.mongodb.net/?retryWrites=true&w=majority"
+const DB = process.env.DATABASE
     
 
 const delete_ = async ()=>{
