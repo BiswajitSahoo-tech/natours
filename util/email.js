@@ -11,7 +11,7 @@ module.exports = class Email{
         this.from = 'Biswajit Sahoo <'+process.env.EMAIL_FROM+'>'
     }
     newTransport(){
-        if( process.env.NODE_ENV == 'prod'){
+        if( process.env.NODE_ENV == 'production'){
             //sendgrid
             return 1
         }
