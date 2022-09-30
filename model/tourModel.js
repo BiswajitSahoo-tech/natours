@@ -176,7 +176,7 @@ tourSchema.pre('save', function(next){
 })
 tourSchema.pre('save', function(next){
     // console.log(this)
-    console.log('saving document...')
+    // console.log('saving document...')
     next()
 
 })

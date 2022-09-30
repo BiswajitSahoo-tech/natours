@@ -25,7 +25,7 @@ class APIFeatures{
     sort(){
         if(this.req.query.sort){
             let str = this.req.query.sort.split(',').join(' ')
-            console.log(str)
+            // console.log(str)
             this.query = this.query.sort(str) // this.query.sort('price Avgrate')
         }else{
             this.query = this.query.sort('createdAt')

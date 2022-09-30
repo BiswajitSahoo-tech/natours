@@ -32,7 +32,7 @@ userRouter.route('/deleteMe').delete( userController.deleteMe)
 
 
 userRouter.param('id' , (req , res, next, val) =>{
-    console.log(val)
+    // console.log(val)
     next()
 })
 

@@ -14,6 +14,7 @@ const hpp = require('hpp')
 const viewRouter = require('./routes/viewRoutes')
 const bookingRouter = require('./routes/bookingRoutes')
 const cookieParser = require('cookie-parser')
+const compression = require('compression')
 
 
 const app = express()
@@ -112,16 +113,17 @@ app.use(hpp({
     whitelist: ['duration' , 'ratingQuantity' , 'ratingAverages' , 'price']
 }))
 
+app.use( compression()) //->only for text
 
 //only use logger when the app is in development environment
 if(process.env.NODE_ENV === 'dev'){
     app.use(morgan('dev'))
 }
 
-app.use( (req , res, next) =>{
-    console.log('I am a middleWare 😒😒😒😒😊❤️❤️❤️❤️❤️😒😒😒')
-    next()
-})
+// app.use( (req , res, next) =>{
+//     // console.log('I am a middleWare 😒😒😒😒😊❤️❤️❤️❤️❤️😒😒😒')
+//     next()
+// })
 app.use( (req, res, next) => {
     req.t = new Date()
     // console.log(req.cookies)
