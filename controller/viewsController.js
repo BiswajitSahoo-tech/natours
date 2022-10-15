@@ -39,7 +39,11 @@ exports.getLoginForm =  ( req, res )=>{
         title: 'Sign In'
     })
 }
-
+exports.getSignupForm = (req, res)=> {
+    res.status(200).render('signup',{
+        title: 'Sign Up❤️'
+    })
+}
 
 exports.getAccount = ( req, res)=>{
     res.status(200).render('account',{

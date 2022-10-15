@@ -4,11 +4,13 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "start:prod": "NODE_ENV=prod node server.js",
     "debug": "ndb server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
-    "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
+    "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
+    "data:import": "node dev-data/data/import_dev_data.js",
+    "data:destroy": "node dev-data/data/import_dev_data.js -d"
   },
   "author": "Biswajit Sahoo",
   "license": "ISC",
@@ -30,6 +32,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.4",
     "nodemailer": "^6.7.8",
+    "nodemon": "^2.0.20",
     "pug": "^3.0.2",
     "sharp": "^0.31.0",
     "slugify": "^1.6.5",

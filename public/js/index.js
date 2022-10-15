@@ -2,7 +2,7 @@
 // it delegate the action
 import '@babel/polyfill'
 import { displayMap } from './mapbox'
-import { login, logout } from './login' 
+import { login, logout,signup } from './login' 
 import {  updateSettings } from './updateSettings'
 import { bookTour } from './stripe'
 
@@ -13,7 +13,8 @@ const loginForm = document.querySelector('.form--login')
 const logOutBtn = document.querySelector('.nav__el--logout')
 const userDataForm = document.querySelector('.form-user-data')
 const userPasswordForm = document.querySelector('.form-user-password')
-const bookBtn = document.getElementById('book-tour');
+const bookBtn = document.getElementById('book-tour')
+const signupBtn = document.getElementById('signupBtn')
 
 
 //values
@@ -37,6 +38,17 @@ if(loginForm){
         const password = document.getElementById('password').value
         // console.log( email , password)
         login( email , password)
+    })
+}
+if(signupBtn){
+    signupBtn.addEventListener('click', e => {
+        e.preventDefault()
+        
+        const name = document.getElementById('name').value
+        const email = document.getElementById('email').value
+        const password = document.getElementById('password').value
+        const passwordConfirm = document.getElementById('passwordConfirm').value
+        signup(name , email, password, passwordConfirm)
     })
 }
 

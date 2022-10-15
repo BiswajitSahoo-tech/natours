@@ -2,6 +2,7 @@ const express = require('express')
 const toursController = require('./../controller/toursController')
 const authController = require('./../controller/authController')
 const reviewRouter = require('./../routes/reviewRoutes')
+const Tour = require('../model/tourModel')
 
 const tourRouter = express.Router()
 
@@ -43,4 +44,22 @@ tourRouter.route('/:id')
 //           .post(authController.protect , authController.restrictsTo('user') , reviewController.createReview)
 
 
+tourRouter.patch('/test/:id',async (req, res, next)=> {
+        const id = req.params.id
+        try{
+                var tour =  await Tour.findByIdAndUpdate(id , {
+                        $inc:{
+                                maxGroupSize:1
+                        }
+                })
+        }
+        catch( err){
+                return next( err)
+        }
+        
+        res.status(200).json( {
+                status: 'success',
+                tour
+        })
+})
 module.exports = tourRouter

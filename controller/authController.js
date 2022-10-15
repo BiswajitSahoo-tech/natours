@@ -35,23 +35,34 @@ const sendToken = (user, statusCode , res)=>{
 }
 exports.signup = async (req, res , next)=>{
     try{
-        const user = await User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-            passwordConfirm: req.body.passwordConfirm,
-            //passwordChangedAt: req.body.passwordChangedAt,
-            role: req.body.role
-        })
-        const url = req.protocol+'://'+req.get('host')+'/me'
+        try{
+            var user = await User.create({
+                name: req.body.name,
+                email: req.body.email,
+                password: req.body.password,
+                passwordConfirm: req.body.passwordConfirm,
+                role: req.body.role
+            })
+        }catch( err){
+            console.log('Insertion--->',err)
+            throw err
+        }
         
-        await new Email( user, url).sendWelcome()
+        //NOT SENDING EMAIL DUE TO NETWORK ISSUE
+        // const url = req.protocol+'://'+req.get('host')+'/me'
+        // try{
+        //     await new Email( user, url).sendWelcome()
+        // }catch( err){
+        //     console.log('Email--->', err)
+        //     throw err
+        // }
+        
 
         sendToken(user , 200 , res)
         
     }catch( err){
         
-        next( new AppError(err , 400))
+        next( new AppError('We are working on it.' , 400))
     }
 }
 
@@ -108,7 +119,7 @@ exports.protect = async (req, res, next)=>{
     }
 
     if(!token || token === 'loggedout'){
-        return next(new AppError('you are not logged in..', 401))
+        return next(new AppError('you are not logged in. Please log in to access this page', 401))
     }
     //validate the token // verify the signautre
     //below promise return the decoded payload as resolved value
